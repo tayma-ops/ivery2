@@ -1,0 +1,36 @@
+﻿<header class="mwa-header" dir="rtl">
+    <div class="mwa-header-inner">
+        <a href="index.html" class="mwa-header-logo">
+            <img src="assets/mawidi-logo-generated.png" alt="موعدي - الصفحة الرئيسية" width="2000" height="800">
+        </a>
+        <nav class="mwa-header-nav" aria-label="التنقل الرئيسي">
+            <a href="index.html#features">المميزات</a>
+            <a href="contact.html" class="mwa-header-contact">اتصل بنا</a>
+            <a href="index.html#booking" class="mwa-header-booking">احجز موعدك</a>
+        </nav>
+    </div>
+</header>
+<style>
+    .mwa-header { background: #fff; border-bottom: 1px solid #e1eee7; }
+    .mwa-header-inner {
+        width: min(1200px, 92%); margin: auto; padding: 12px 0;
+        display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .mwa-header-logo { display: inline-flex; flex-shrink: 0; }
+    .mwa-header-logo img { display: block; width: 190px; height: auto; }
+    .mwa-header-nav { display: flex; align-items: center; gap: 22px; }
+    .mwa-header-nav a { color: #063d2e; text-decoration: none; font-size: 14px; font-weight: bold; }
+    .mwa-header-nav .mwa-header-booking {
+        background: #0a9747; color: #fff; padding: 12px 18px; border-radius: 10px;
+    }
+    .mwa-header a:focus-visible { outline: 3px solid #0a9747; outline-offset: 4px; }
+    .mwa-header-nav a[aria-current="page"] { color: #0a9747; text-decoration: underline; text-underline-offset: 6px; }
+    @media (max-width: 480px) {
+        .mwa-header-inner { flex-wrap: wrap; justify-content: center; }
+        .mwa-header-nav { justify-content: center; flex-wrap: wrap; }
+        .mwa-header-logo img { width: 140px; }
+        .mwa-header-nav { gap: 10px; }
+        .mwa-header-nav a { font-size: 12px; }
+        .mwa-header-nav .mwa-header-booking { padding: 10px; }
+    }
+</style>

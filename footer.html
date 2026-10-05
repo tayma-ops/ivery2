@@ -1,0 +1,293 @@
+<footer class="mwa-footer">
+
+    <div class="mwa-footer-main">
+
+        <!-- معلومات الموقع -->
+        <div class="mwa-footer-brand">
+
+            <a href="index.html" class="mwa-footer-logo">
+                <img src="assets/mawidi-logo-generated.png" alt="موعدي - الصفحة الرئيسية" width="2000" height="800" loading="lazy">
+            </a>
+
+            <p>
+                منصتك الصحية لحجز المواعيد بسهولة
+                والوصول إلى الطبيب المناسب في الوقت المناسب.
+            </p>
+
+            <div class="mwa-social">
+
+                <a href="#" aria-label="X">𝕏</a>
+                <a href="#" aria-label="Instagram">◎</a>
+                <a href="#" aria-label="Facebook">f</a>
+                <a href="#" aria-label="LinkedIn">in</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- روابط الموقع -->
+        <div class="mwa-footer-column">
+
+            <h3>موعدي</h3>
+
+            <a href="#">عن موعدي</a>
+            <a href="#">الأطباء</a>
+            <a href="#">العيادات</a>
+            <a href="#">الأسئلة الشائعة</a>
+
+        </div>
+
+
+        <!-- خدمات -->
+        <div class="mwa-footer-column">
+
+            <h3>الخدمات</h3>
+
+            <a href="#">حجز موعد</a>
+            <a href="#">إدارة المواعيد</a>
+            <a href="#">البحث عن طبيب</a>
+            <a href="#">العيادات الطبية</a>
+
+        </div>
+
+
+        <!-- الدعم -->
+        <div class="mwa-footer-column">
+
+            <h3>تحتاج مساعدة؟</h3>
+
+            <a href="#">مركز المساعدة</a>
+            <a href="contact.html">اتصل بنا</a>
+            <a href="#">سياسة الخصوصية</a>
+            <a href="#">الشروط والأحكام</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="mwa-footer-bottom">
+
+        <span>
+            © 2026 موعدي. جميع الحقوق محفوظة.
+        </span>
+
+        <span>
+            صحتك أولويتنا 💚
+        </span>
+
+    </div>
+
+</footer>
+
+
+<style>
+
+    /* ==============================
+       موعدي - Footer
+       ============================== */
+
+    .mwa-footer {
+        background:
+            linear-gradient(
+                135deg,
+                #032e23 0%,
+                #064e3b 45%,
+                #087a3e 100%
+            );
+
+        color: white;
+        margin-top: 60px;
+    }
+
+    .mwa-footer-main {
+        width: min(1200px, 92%);
+        margin: auto;
+
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 50px;
+
+        padding: 60px 0 45px;
+    }
+
+    /* العلامة */
+
+    .mwa-footer-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        color: white;
+        text-decoration: none;
+    }
+
+    .mwa-footer-logo img {
+        display: block;
+        width: 190px;
+        height: auto;
+        padding: 8px;
+        background: #fff;
+        border-radius: 12px;
+    }
+
+    .mwa-footer-logo span {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 11px;
+
+        background: rgba(255,255,255,0.14);
+
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .mwa-footer-logo strong {
+        font-size: 23px;
+    }
+
+    .mwa-footer-brand p {
+        max-width: 320px;
+
+        color: #c4ded3;
+        font-size: 14px;
+        line-height: 1.9;
+
+        margin: 18px 0 20px;
+    }
+
+    /* السوشيال */
+
+    .mwa-social {
+        display: flex;
+        gap: 8px;
+    }
+
+    .mwa-social a {
+        width: 35px;
+        height: 35px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: white;
+        text-decoration: none;
+
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 9px;
+
+        background: rgba(255,255,255,0.06);
+
+        transition: 0.25s;
+    }
+
+    .mwa-social a:hover {
+        background: #22c55e;
+        border-color: #22c55e;
+        transform: translateY(-2px);
+    }
+
+    /* الأعمدة */
+
+    .mwa-footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .mwa-footer-column h3 {
+        margin: 0 0 10px;
+
+        color: white;
+        font-size: 15px;
+    }
+
+    .mwa-footer-column a {
+        color: #c4ded3;
+        text-decoration: none;
+        font-size: 13px;
+
+        transition: 0.2s;
+    }
+
+    .mwa-footer-column a:hover {
+        color: #5ee58a;
+        transform: translateX(-3px);
+    }
+
+    /* الجزء السفلي */
+
+    .mwa-footer-bottom {
+        width: min(1200px, 92%);
+        margin: auto;
+
+        padding: 20px 0;
+
+        border-top: 1px solid rgba(255,255,255,0.1);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        color: #a9cbbd;
+        font-size: 12px;
+    }
+
+    @media (max-width: 800px) {
+
+        .mwa-footer-main {
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+    }
+
+    @media (max-width: 550px) {
+
+        .mwa-footer-main {
+            grid-template-columns: 1fr;
+            padding: 45px 0 35px;
+        }
+
+        .mwa-footer-bottom {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+
+    }
+
+</style>
+
+
+<script>
+
+    /* ==============================
+       موعدي - Footer JS
+       ============================== */
+
+    (function () {
+
+        // السنة تلقائياً
+        const footerText =
+            document.querySelector(".mwa-footer-bottom span");
+
+        if (footerText) {
+
+            const currentYear = new Date().getFullYear();
+
+            footerText.innerHTML =
+                `© ${currentYear} موعدي. جميع الحقوق محفوظة.`;
+
+        }
+
+    })();
+
+</script>

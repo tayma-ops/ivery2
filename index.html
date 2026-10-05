@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>موعدي | حجز المواعيد الطبية</title>
+
+
+    <style>
+
+        /* ==============================
+           موعدي - الصفحة الرئيسية
+           ============================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                "Tahoma",
+                "Arial",
+                sans-serif;
+
+            background: #f6faf8;
+            color: #17352b;
+        }
+
+        .mwa-container {
+            width: min(1200px, 92%);
+            margin: auto;
+        }
+
+
+        /* ==============================
+           Hero
+           ============================== */
+
+        .mwa-hero {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+
+            padding: 90px 0 100px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #063d2e 0%,
+                    #124f43 55%,
+                    #087a3e 100%
+                );
+        }
+
+        .mwa-hero::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(270deg, rgba(2, 25, 20, 0.88), rgba(2, 25, 20, 0.55)),
+                        linear-gradient(0deg, rgba(2, 25, 20, 0.4), transparent);
+        }
+
+        .mwa-hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .mwa-video-toggle {
+            position: absolute;
+            left: 4%;
+            bottom: 20px;
+            padding: 9px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-radius: 30px;
+            background: rgba(2, 25, 20, 0.6);
+            color: white;
+            font: inherit;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .mwa-video-toggle[hidden] { display: none; }
+        .mwa-video-toggle:focus-visible { outline: 3px solid #86efac; outline-offset: 4px; }
+        .mwa-hero .mwa-booking-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .mwa-hero-content {
+            position: relative;
+
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+
+            align-items: center;
+
+            gap: 60px;
+        }
+
+
+        /* النص */
+
+        .mwa-hero-text small {
+            display: inline-block;
+
+            padding: 8px 13px;
+
+            background: rgba(255, 255, 255, 0.12);
+            color: #bbf7d0;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+        .mwa-hero-text h1 {
+            margin: 0;
+
+            color: #ffffff;
+
+            font-size: clamp(35px, 5vw, 58px);
+
+            line-height: 1.25;
+        }
+
+        .mwa-hero-text h1 span {
+            color: #86efac;
+        }
+
+        .mwa-hero-text p {
+            max-width: 570px;
+
+            color: #e0eee7;
+
+            line-height: 2;
+
+            font-size: 16px;
+
+            margin: 20px 0 30px;
+        }
+
+        .mwa-hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .mwa-primary-btn,
+        .mwa-secondary-btn {
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 23px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+        .mwa-primary-btn {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #064e3b,
+                    #119447
+                );
+
+            box-shadow:
+                0 10px 25px
+                rgba(6, 78, 59, 0.2);
+        }
+
+        .mwa-primary-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .mwa-secondary-btn {
+
+            color: #08643d;
+
+            background: white;
+
+            border: 1px solid #d8ebe1;
+        }
+
+
+        /* بطاقة الحجز */
+
+        .mwa-booking-card {
+
+            position: relative;
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(5, 78, 50, 0.12);
+
+            border: 1px solid #e1eee7;
+        }
+
+        .mwa-booking-card h2 {
+            margin: 0 0 8px;
+
+            color: #064e3b;
+
+            font-size: 22px;
+        }
+
+        .mwa-booking-card > p {
+            margin: 0 0 25px;
+
+            color: #809189;
+
+            font-size: 13px;
+        }
+
+        .mwa-field {
+            margin-bottom: 15px;
+        }
+
+        .mwa-field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #38574a;
+
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .mwa-field select,
+        .mwa-field input {
+
+            width: 100%;
+
+            border: 1px solid #dceae3;
+
+            background: #f9fcfa;
+
+            padding: 13px;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            color: #365449;
+
+            font-family: inherit;
+
+            transition: 0.2s;
+        }
+
+        .mwa-field select:focus,
+        .mwa-field input:focus {
+            border-color: #21a458;
+            background: white;
+        }
+
+        .mwa-search-btn {
+
+            width: 100%;
+
+            border: 0;
+
+            padding: 14px;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #064e3b,
+                    #16a34a
+                );
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+            transition: 0.25s;
+        }
+
+        .mwa-search-btn:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* ==============================
+           المميزات
+           ============================== */
+
+        .mwa-features {
+            padding: 70px 0;
+            background: white;
+        }
+
+        .mwa-section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .mwa-section-title small {
+            color: #099447;
+            font-weight: bold;
+        }
+
+        .mwa-section-title h2 {
+            margin: 8px 0;
+
+            color: #063d2e;
+
+            font-size: 30px;
+        }
+
+        .mwa-section-title p {
+            color: #75877f;
+            font-size: 14px;
+        }
+
+        .mwa-feature-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .mwa-feature {
+
+            padding: 28px;
+
+            border: 1px solid #e4eee8;
+
+            border-radius: 18px;
+
+            background: #fbfefc;
+
+            transition: 0.25s;
+        }
+
+        .mwa-feature:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(0, 80, 50, 0.08);
+        }
+
+        .mwa-feature-icon {
+
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: #e3f7ea;
+
+            color: #078a42;
+
+            font-size: 23px;
+
+            margin-bottom: 18px;
+        }
+
+        .mwa-feature h3 {
+            color: #124b38;
+            font-size: 17px;
+            margin: 0 0 9px;
+        }
+
+        .mwa-feature p {
+            color: #75877f;
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+
+        /* ==============================
+           Responsive
+           ============================== */
+
+        @media (max-width: 850px) {
+
+            .mwa-hero {
+                padding: 60px 0;
+            }
+
+            .mwa-hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .mwa-hero-text {
+                text-align: center;
+            }
+
+            .mwa-hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .mwa-hero-buttons {
+                justify-content: center;
+            }
+
+            .mwa-feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================
+         Header Template
+         ========================== -->
+
+    <div id="mwa-header"></div>
+
+
+    <!-- ==========================
+         المحتوى
+         ========================== -->
+
+    <main>
+
+
+        <!-- Hero -->
+
+        <section class="mwa-hero">
+
+            <video class="mwa-hero-video" id="mwaHeroVideo"
+                   autoplay muted loop playsinline preload="metadata"
+                   poster="media/hero-poster.jpg" aria-hidden="true">
+                <source src="media/hero-video.mp4" type="video/mp4">
+            </video>
+
+            <button type="button" class="mwa-video-toggle" id="mwaVideoToggle"
+                    aria-controls="mwaHeroVideo" hidden>إيقاف الفيديو</button>
+
+            <div class="mwa-container">
+
+                <div class="mwa-hero-content">
+
+
+                    <div class="mwa-hero-text">
+
+                        <small>
+                            منصة الحجز الطبي الذكية
+                        </small>
+
+                        <h1>
+                            احجز موعدك الطبي
+                            <span>بسهولة</span>
+                        </h1>
+
+                        <p>
+                            مع موعدي يمكنك البحث عن الطبيب المناسب،
+                            اختيار الموعد الذي يناسبك، وحجز موعدك
+                            الطبي بكل سهولة وأمان.
+                        </p>
+
+                        <div class="mwa-hero-buttons">
+
+                            <a href="#booking"
+                               class="mwa-primary-btn">
+                                احجز موعدك الآن
+                            </a>
+
+                            <a href="#features"
+                               class="mwa-secondary-btn">
+                                اكتشف موعدي
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- بطاقة البحث -->
+
+                    <div class="mwa-booking-card"
+                         id="booking">
+
+                        <h2>
+                            ابحث عن موعد
+                        </h2>
+
+                        <p>
+                            اختر تخصص الطبيب والمدينة للبدء.
+                        </p>
+
+
+                        <div class="mwa-field">
+
+                            <label>
+                                التخصص الطبي
+                            </label>
+
+                            <select>
+                                <option>
+                                    اختر التخصص
+                                </option>
+
+                                <option>
+                                    طب الأسنان
+                                </option>
+
+                                <option>
+                                    طب الأطفال
+                                </option>
+
+                                <option>
+                                    الباطنية
+                                </option>
+
+                                <option>
+                                    الجلدية
+                                </option>
+
+                                <option>
+                                    العيون
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="mwa-field">
+
+                            <label>
+                                المدينة
+                            </label>
+
+                            <select>
+
+                                <option>
+                                    اختر المدينة
+                                </option>
+
+                                <option>
+                                    الرياض
+                                </option>
+
+                                <option>
+                                    جدة
+                                </option>
+
+                                <option>
+                                    الدمام
+                                </option>
+
+                                <option>
+                                    مكة المكرمة
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="mwa-field">
+
+                            <label>
+                                تاريخ الموعد
+                            </label>
+
+                            <input
+                                type="date"
+                            >
+
+                        </div>
+
+
+                        <button
+                            class="mwa-search-btn"
+                            id="mwaSearchBtn">
+
+                            البحث عن المواعيد
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- المميزات -->
+
+        <section
+            class="mwa-features"
+            id="features">
+
+            <div class="mwa-container">
+
+                <div class="mwa-section-title">
+
+                    <small>
+                        لماذا موعدي؟
+                    </small>
+
+                    <h2>
+                        كل ما تحتاجه لحجز موعدك
+                    </h2>
+
+                    <p>
+                        تجربة بسيطة وسريعة تساعدك على الوصول
+                        إلى الرعاية الصحية المناسبة.
+                    </p>
+
+                </div>
+
+
+                <div class="mwa-feature-grid">
+
+
+                    <div class="mwa-feature">
+
+                        <div class="mwa-feature-icon">
+                            ✓
+                        </div>
+
+                        <h3>
+                            حجز سريع
+                        </h3>
+
+                        <p>
+                            احجز موعدك خلال خطوات بسيطة
+                            دون الحاجة إلى الانتظار.
+                        </p>
+
+                    </div>
+
+
+                    <div class="mwa-feature">
+
+                        <div class="mwa-feature-icon">
+                            ♡
+                        </div>
+
+                        <h3>
+                            أطباء موثوقون
+                        </h3>
+
+                        <p>
+                            اختر من مجموعة من الأطباء
+                            والعيادات المتخصصة.
+                        </p>
+
+                    </div>
+
+
+                    <div class="mwa-feature">
+
+                        <div class="mwa-feature-icon">
+                            ⏱
+                        </div>
+
+                        <h3>
+                            مواعيد تناسبك
+                        </h3>
+
+                        <p>
+                            استعرض الأوقات المتاحة واختر
+                            الموعد الأنسب لك.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================
+         Footer Template
+         ========================== -->
+
+    <div id="mwa-footer"></div>
+
+
+    <!-- ==========================
+         JavaScript
+         ========================== -->
+
+    <script>
+
+        const heroVideo = document.getElementById("mwaHeroVideo");
+        const videoToggle = document.getElementById("mwaVideoToggle");
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+        function updateVideoButton() {
+            videoToggle.textContent = heroVideo.paused ? "تشغيل الفيديو" : "إيقاف الفيديو";
+        }
+
+        heroVideo.muted = true;
+        heroVideo.addEventListener("loadeddata", () => {
+            videoToggle.hidden = false;
+            updateVideoButton();
+        });
+        heroVideo.addEventListener("play", updateVideoButton);
+        heroVideo.addEventListener("pause", updateVideoButton);
+        heroVideo.addEventListener("error", () => { videoToggle.hidden = true; });
+        heroVideo.querySelector("source").addEventListener("error", () => {
+            videoToggle.hidden = true;
+        });
+        videoToggle.addEventListener("click", () => {
+            if (heroVideo.paused) {
+                heroVideo.play().catch(updateVideoButton);
+            } else {
+                heroVideo.pause();
+            }
+        });
+
+        function applyMotionPreference() {
+            heroVideo.autoplay = !reducedMotion.matches;
+            if (reducedMotion.matches) {
+                heroVideo.pause();
+            } else {
+                heroVideo.play().catch(updateVideoButton);
+            }
+        }
+        reducedMotion.addEventListener("change", applyMotionPreference);
+        applyMotionPreference();
+
+        /* ==============================
+           استدعاء القوالب
+           ============================== */
+
+        async function loadTemplate(elementId, fileName) {
+
+            try {
+
+                const response =
+                    await fetch(fileName);
+
+                if (!response.ok) {
+                    throw new Error(
+                        "تعذر تحميل " + fileName
+                    );
+                }
+
+                const html =
+                    await response.text();
+
+                document
+                    .getElementById(elementId)
+                    .innerHTML = html;
+
+            } catch (error) {
+
+                console.error(error);
+
+                document
+                    .getElementById(elementId)
+                    .innerHTML =
+                    "<p style='text-align:center;padding:20px;color:red'>تعذر تحميل القالب</p>";
+            }
+        }
+
+
+        /* تحميل Header */
+
+        loadTemplate(
+            "mwa-header",
+            "header.html"
+        );
+
+
+        /* تحميل Footer */
+
+        loadTemplate(
+            "mwa-footer",
+            "footer.html"
+        );
+
+
+        /* ==============================
+           زر البحث
+           ============================== */
+
+        document
+            .getElementById("mwaSearchBtn")
+            .addEventListener("click", function () {
+
+                const specialty =
+                    document.querySelector(
+                        ".mwa-field select"
+                    ).value;
+
+                if (
+                    specialty === "اختر التخصص"
+                ) {
+
+                    alert(
+                        "يرجى اختيار التخصص الطبي"
+                    );
+
+                    return;
+                }
+
+                alert(
+                    "سيتم عرض المواعيد المتاحة"
+                );
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>
