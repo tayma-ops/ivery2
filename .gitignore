@@ -1,0 +1,27 @@
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.sqlite3-*
+*.db
+*.log
+/staticfiles/
+/uploads/
+/test-results/
+
+# Local demo state (contains secrets and personal records)
+/.local/
+
+# Portfolio hygiene: local state, editor files and historical backups
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+/docs/ORIGINAL_README.md
+*.bak
+*.tmp
+*~
